@@ -5,7 +5,7 @@ import { CursorGlow } from "./components/Interactive.jsx";
 import Hero from "./components/Hero.jsx";
 import Story from "./components/Story.jsx";
 import Projects from "./components/Projects.jsx";
-import { Hackathons, Skills, Contact } from "./components/Sections.jsx";
+import { LiveStrip, Hackathons, Skills, Contact } from "./components/Sections.jsx";
 import { profile } from "./data.js";
 
 export default function App() {
@@ -31,6 +31,7 @@ export default function App() {
 
       <main id="top">
         <Hero />
+        <LiveStrip />
         <Story />
         <Projects />
         <Hackathons />
