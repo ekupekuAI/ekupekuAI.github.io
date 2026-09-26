@@ -3,7 +3,7 @@ export const profile = {
   kicker: "Computer Science Engineering · B.Tech",
   sub: "I'm a CS student who likes building the whole thing — the UI, the API, the database, and the AI parts in between — and then actually shipping it.",
   github: "https://github.com/ekupekuAI",
-  linkedin: "https://www.linkedin.com/in/ekanshg2118/",
+  linkedin: "https://www.linkedin.com/in/gingamekansh/",
   instagram: "https://instagram.com/whyalways.ekansh",
   twitter: "https://twitter.com/Ekanshxd",
   // Drop a PDF in public/ (e.g. public/resume.pdf) and set "./resume.pdf" to show the button.

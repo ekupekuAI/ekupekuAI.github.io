@@ -5,3 +5,6 @@ dist
 !.env.example
 *.log
 .DS_Store
+
+# resume drafts live in resume/; only the final PDF goes to public/
+resume/*.pdf
