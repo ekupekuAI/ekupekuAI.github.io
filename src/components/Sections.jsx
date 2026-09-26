@@ -1,13 +1,54 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Magnetic } from "./Interactive.jsx";
-import { hackathons, marqueeA, marqueeB, skillTiers, profile } from "../data.js";
+import { hackathons, marqueeA, marqueeB, skillTiers, profile, projects } from "../data.js";
+import { useGithubRepos, useGithubContributions, relativeTime, sendContact } from "../lib/api.js";
 
 const reveal = {
   hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 const list = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
+
+// A one-line status readout between the hero and the story. Every number is
+// fetched from GitHub or counted from the project list; nothing is typed in.
+export function LiveStrip() {
+  const github = useGithubRepos();
+  const calendar = useGithubContributions();
+  if (!github && !calendar) return null;
+
+  const latest = github?.repos?.[0]?.pushedAt;
+  const liveCount = projects.filter((p) => p.live).length;
+  const items = [
+    github && { value: github.repos.length, label: "public repos" },
+    calendar && { value: calendar.totalContributions, label: "contributions this year" },
+    latest && { value: relativeTime(latest), label: "last commit" },
+    { value: liveCount, label: liveCount === 1 ? "live demo" : "live demos" },
+    { value: hackathons.length, label: "hackathon builds" },
+  ].filter(Boolean);
+
+  return (
+    <motion.section
+      className="live-strip"
+      aria-label="Live status"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.6 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="container live-strip-inner">
+        <span className="live-dot">
+          <i aria-hidden="true" /> Live from GitHub
+        </span>
+        {items.map((it) => (
+          <span className="live-item" key={it.label}>
+            <strong>{it.value}</strong> {it.label}
+          </span>
+        ))}
+      </div>
+    </motion.section>
+  );
+}
 
 export function Hackathons() {
   return (
@@ -106,6 +147,76 @@ const XIcon = () => (
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
+const FileIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <path d="M14 2v6h6M16 13H8M16 17H8" />
+  </svg>
+);
+
+// Posts to the backend that holds the mail credentials; the page itself has no keys.
+function ContactForm() {
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const [error, setError] = useState("");
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    const formEl = e.currentTarget; // captured before any await — stale after
+    const form = new FormData(formEl);
+    setStatus("sending");
+    setError("");
+    try {
+      const data = await sendContact({
+        name: String(form.get("name") ?? ""),
+        email: String(form.get("email") ?? ""),
+        message: String(form.get("message") ?? ""),
+        honeypot: String(form.get("company") ?? ""),
+      });
+      if (data?.ok) {
+        setStatus("success");
+        formEl.reset();
+      } else {
+        setStatus("error");
+        setError(data?.error ?? "Something went wrong.");
+      }
+    } catch {
+      setStatus("error");
+      setError("Network error — please try again, or reach me on LinkedIn.");
+    }
+  }
+
+  return (
+    <motion.form className="form" onSubmit={onSubmit} variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
+      {/* honeypot: hidden from people, filled by bots */}
+      <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hp" aria-hidden="true" />
+      <div className="form-row">
+        <label>
+          <span>Name</span>
+          <input name="name" type="text" autoComplete="name" placeholder="Ada Lovelace" required />
+        </label>
+        <label>
+          <span>Email</span>
+          <input name="email" type="email" autoComplete="email" placeholder="you@company.com" required />
+        </label>
+      </div>
+      <label>
+        <span>Message</span>
+        <textarea name="message" rows={6} placeholder="What are you building, and where could I help?" required />
+      </label>
+      <div className="form-actions">
+        <Magnetic>
+          <button className="btn primary" type="submit" disabled={status === "sending"}>
+            {status === "sending" ? "Sending…" : "Send message"}
+          </button>
+        </Magnetic>
+        <p className="form-status" aria-live="polite">
+          {status === "success" && <span className="ok">Thanks — your message is on its way.</span>}
+          {status === "error" && <span className="err">{error}</span>}
+        </p>
+      </div>
+    </motion.form>
+  );
+}
 
 export function Contact() {
   return (
@@ -115,14 +226,17 @@ export function Contact() {
           <span className="eyebrow">Looking for</span>
           <h2 className="h2" id="contact-title">A software, full-stack, backend or AI engineering internship.</h2>
           <p className="lede" style={{ marginInline: "auto" }}>
-            If you've got a hard problem and want someone who'll build the whole thing rather than one layer of it, I'd like to hear about it.
+            {profile.availability}. If you've got a hard problem and want someone who'll build the whole thing rather
+            than one layer of it, I'd like to hear about it. Messages go straight to my inbox.
           </p>
         </motion.div>
 
+        <ContactForm />
+
         <motion.div className="cta-row" variants={list} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <Magnetic>
-            <motion.a className="btn primary" href={profile.linkedin} target="_blank" rel="noreferrer" variants={reveal}>
-              <LinkedInIcon /> Connect on LinkedIn
+            <motion.a className="btn" href={profile.linkedin} target="_blank" rel="noreferrer" variants={reveal}>
+              <LinkedInIcon /> LinkedIn
             </motion.a>
           </Magnetic>
           <Magnetic>
@@ -144,11 +258,18 @@ export function Contact() {
               </motion.a>
             </Magnetic>
           )}
+          {profile.resume && (
+            <Magnetic>
+              <motion.a className="btn" href={profile.resume} download variants={reveal}>
+                <FileIcon /> Resume
+              </motion.a>
+            </Magnetic>
+          )}
         </motion.div>
 
         <div className="footer">
           <span>© {new Date().getFullYear()} EKANSH</span>
-          <span>REACT · MOTION · THREE.JS</span>
+          <span>REACT · MOTION · THREE.JS · LIVE GITHUB DATA</span>
         </div>
       </div>
     </section>
