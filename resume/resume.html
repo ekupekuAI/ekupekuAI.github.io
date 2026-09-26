@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Ekansh — Resume</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  /* Print-first: one A4 page, black on white, one accent. Same fonts as the site. */
+  @page { size: A4; margin: 14mm 15mm; }
+  :root { --ink: #111827; --muted: #4b5563; --rule: #d1d5db; --accent: #15803d; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #fff; color: var(--ink); }
+  body { font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 10.4pt; line-height: 1.38; }
+  .page { max-width: 186mm; margin: 0 auto; padding: 10mm 0; }
+  h1 { font-family: "JetBrains Mono", monospace; font-size: 24pt; letter-spacing: -0.02em; margin: 0; line-height: 1; }
+  .role { font-family: "JetBrains Mono", monospace; font-size: 9.5pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-top: 5px; }
+  .contact { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 9.4pt; color: var(--muted); }
+  .contact a { color: var(--muted); text-decoration: none; }
+  h2 { font-family: "JetBrains Mono", monospace; font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 13px 0 5px; padding-bottom: 3px; border-bottom: 1px solid var(--rule); }
+  p { margin: 0; }
+  .summary { color: var(--ink); }
+  .item { margin-top: 6px; }
+  .item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .item-head strong { font-size: 10.8pt; }
+  .item-head .meta { font-family: "JetBrains Mono", monospace; font-size: 8.4pt; color: var(--muted); white-space: nowrap; }
+  .item .sub { color: var(--muted); font-size: 9.6pt; }
+  ul { margin: 3px 0 0; padding-left: 14px; }
+  li { margin: 1.5px 0; }
+  .tech { font-family: "JetBrains Mono", monospace; font-size: 8.4pt; color: var(--muted); margin-top: 2px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; }
+  .skills p { margin: 2px 0; }
+  .skills b { font-weight: 600; }
+  .fill { background: #fef3c7; color: #92400e; padding: 0 3px; border-radius: 3px; }
+  @media screen { body { background: #e5e7eb; } .page { background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,.15); padding: 14mm 15mm; margin: 24px auto; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>Ekansh</h1>
+    <div class="role">Full-Stack Developer &amp; AI Engineer · B.Tech Computer Science Engineering</div>
+    <div class="contact">
+      <a href="mailto:ekansh.devops.ai@gmail.com">ekansh.devops.ai@gmail.com</a>
+      <a href="https://ekupekuai.github.io">ekupekuai.github.io</a>
+      <a href="https://github.com/ekupekuAI">github.com/ekupekuAI</a>
+      <a href="https://www.linkedin.com/in/gingamekansh/">linkedin.com/in/gingamekansh</a>
+      <span class="fill">[phone]</span>
+      <span class="fill">[city, country]</span>
+    </div>
+  </header>
+
+  <h2>Summary</h2>
+  <p class="summary">Computer Science Engineering student who builds software end-to-end — from idea and architecture to a working, deployed product. Strongest across the full loop: understanding a problem, designing the system, integrating frontend, backend, database and AI models, debugging, shipping and presenting it. Most effective in ambiguous problem spaces. Open to Software, Full-Stack, Backend and AI Engineering internships (2026).</p>
+
+  <h2>Projects</h2>
+
+  <div class="item">
+    <div class="item-head"><strong>TrustVision — offline integrity assurance for defense computer-vision pipelines</strong><span class="meta">Smart India Hackathon · github.com/ekupekuAI/AISecurity26228</span></div>
+    <ul>
+      <li>Air-gapped system that verifies datasets, models and inference outputs — duplicate, backdoor and out-of-distribution detection — with no online dependency.</li>
+      <li>Issues a signed, evidence-backed trust verdict and writes every decision to a tamper-proof audit log.</li>
+    </ul>
+    <div class="tech">TypeScript · Python · Docker</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head"><strong>NyayaPath — citizen-first court-case understanding tool</strong><span class="meta">Live: nyaya-path-coral.vercel.app</span></div>
+    <ul>
+      <li>Turns court case updates into a timeline, a plain-language explanation and the next known step; runs on synthetic demo data, explicitly not legal advice.</li>
+    </ul>
+    <div class="tech">TypeScript · deployed on Vercel</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head"><strong>HireFlow — glass-box, bias-aware AI recruiting agent</strong><span class="meta">AI Agent Hackathon 2026 · github.com/ekupekuAI/Hireflow</span></div>
+    <ul>
+      <li>From a job description and resumes: evidence-cited ranked shortlist, auto-generated interview kits, natural-language Q&amp;A over the candidate pool.</li>
+      <li>Blind Mode surfaces where hiring bias enters the ranking instead of hiding it.</li>
+    </ul>
+    <div class="tech">TypeScript · Python · LLM agents</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head"><strong>SentinelID — trust &amp; verification for AI/software supply chains</strong><span class="meta">github.com/ekupekuAI/Sentinel-ID</span></div>
+    <ul>
+      <li>Integrity checking, tamper-evidence and traceability for every component a project depends on; built around proving things are right, not only flagging what looks wrong.</li>
+    </ul>
+    <div class="tech">TypeScript · PL/pgSQL · Solidity</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head"><strong>Student Command Center — full-stack study dashboard with a per-user AI assistant</strong><span class="meta">github.com/ekupekuAI/student-command-center</span></div>
+    <ul>
+      <li>Subjects, tasks, notes and study-session tracking; JWT auth, per-user data isolation and production-hardened rate limiting.</li>
+    </ul>
+    <div class="tech">React · FastAPI · PostgreSQL</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head"><strong>Health Record System — role-based health-record management prototype</strong><span class="meta">github.com/ekupekuAI/Health-Record-System</span></div>
+    <ul>
+      <li>Patient, doctor and admin roles; appointment booking, medical-records timeline and prescription management.</li>
+    </ul>
+    <div class="tech">React · Flask · MongoDB</div>
+  </div>
+
+  <h2>Hackathons &amp; Awards</h2>
+  <div class="two">
+    <div class="item"><div class="item-head"><strong>3rd Prize — NexVerse Hackathon 2026</strong><span class="meta">Aurora University</span></div><p class="sub">Built and pitched a working prototype with a small team over a weekend; defended it before the judges.</p></div>
+    <div class="item"><div class="item-head"><strong>Smart India Hackathon</strong><span class="meta">TrustVision</span></div><p class="sub">Took an SIH problem statement on AI security from research to a working, presentable system.</p></div>
+    <div class="item"><div class="item-head"><strong>AI Agent Hackathon 2026</strong><span class="meta">HireFlow</span></div><p class="sub">Shipped a complete LLM-agent product in the hackathon window.</p></div>
+    <div class="item"><div class="item-head"><strong>24-hour hackathon, 200+ teams</strong><span class="meta">Blockchain + Cybersecurity</span></div><p class="sub">Team split across UI, research, QA and integration/backend.</p></div>
+  </div>
+
+  <h2>Skills</h2>
+  <div class="skills">
+    <p><b>Languages:</b> Python, Java, JavaScript, TypeScript, SQL</p>
+    <p><b>Frontend / backend:</b> React, Next.js, Node.js, FastAPI, REST APIs, Tailwind</p>
+    <p><b>Data:</b> PostgreSQL, Supabase, MongoDB</p>
+    <p><b>AI:</b> LLM APIs, RAG, LangChain, agents, Ollama (local models), OpenRouter, prompt engineering</p>
+    <p><b>Systems &amp; tooling:</b> JWT auth, rate limiting, security-minded system design, Git, Docker, Vercel, Bash / PowerShell</p>
+    <p><b>Currently sharpening:</b> DSA, system design, production backend engineering, testing, CI/CD</p>
+  </div>
+
+  <h2>Education</h2>
+  <div class="item">
+    <div class="item-head"><strong>B.Tech, Computer Science Engineering</strong><span class="meta"><span class="fill">[expected graduation year]</span></span></div>
+    <p class="sub"><span class="fill">[University / Institute name]</span></p>
+  </div>
+</div>
+</body>
+</html>
