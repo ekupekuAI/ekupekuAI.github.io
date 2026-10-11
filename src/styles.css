@@ -226,6 +226,26 @@ p {
   color: var(--fg);
   font-weight: 500;
 }
+/* The intro sits directly on the bright 3D knot; a soft dark halo keeps it legible
+   without dimming the object. */
+.hero-kicker,
+.hero-sub {
+  text-shadow: 0 1px 2px rgba(7, 11, 20, 0.95), 0 0 18px rgba(7, 11, 20, 0.9), 0 0 36px rgba(7, 11, 20, 0.75);
+}
+.hero-sub {
+  color: #cbd5e1; /* one step lighter than --fg-muted: it is read over a lit object */
+}
+.hero-cta {
+  margin-top: var(--space-4);
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero-cta .btn:not(.primary) {
+  background: rgba(7, 11, 20, 0.55);
+  backdrop-filter: blur(6px);
+}
 .scroll-cue {
   position: absolute;
   bottom: 28px;
@@ -696,8 +716,7 @@ p {
   margin-top: var(--space-2);
 }
 .marquee .dim {
-  color: var(--muted);
-  -webkit-text-stroke: 1px var(--border);
+  -webkit-text-stroke: 1px rgba(148, 163, 184, 0.6); /* outline style kept, now legible */
   color: transparent;
 }
 .marquee .dot {
@@ -784,15 +803,29 @@ p {
   pointer-events: none;
   opacity: 0.85;
 }
-main,
-.nav,
-.progress {
+/* Page content sits above the neural canvas; the nav and progress bar must sit
+   above the content (an equal z-index let <main> paint over the nav). */
+main {
   position: relative;
   z-index: 1;
 }
-.nav,
+.nav {
+  position: fixed;
+  z-index: 50;
+}
 .progress {
   position: fixed;
+  z-index: 60;
+}
+/* A short fade behind the nav so text scrolling underneath never collides with
+   the links. Its own layer: the nav uses mix-blend-mode, which would cancel it. */
+.nav-scrim {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 96px;
+  z-index: 49;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(7, 11, 20, 0.92) 0%, rgba(7, 11, 20, 0.65) 55%, rgba(7, 11, 20, 0) 100%);
 }
 .cursor-glow {
   position: fixed;
@@ -813,9 +846,8 @@ main,
 .project {
   transform-style: preserve-3d;
 }
-.project > * {
-  transform: translateZ(24px); /* content floats slightly above the tilting card */
-}
+/* No translateZ on the card's contents: under perspective it rescales the text and
+   Chrome resamples it, which made every card's copy slightly soft. */
 .cta-row > div {
   display: inline-block;
 }

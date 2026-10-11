@@ -18,6 +18,7 @@ export default function App() {
       <NeuralBg />
       <CursorGlow />
       <motion.div className="progress" style={{ scaleX: bar }} aria-hidden="true" />
+      <div className="nav-scrim" aria-hidden="true" />
 
       <nav className="nav" aria-label="Primary">
         <a href="#top">{profile.name}</a>

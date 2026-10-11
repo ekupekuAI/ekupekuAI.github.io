@@ -67,7 +67,8 @@ export function Magnetic({ children, strength = 0.35, ...rest }) {
 
 // A card that tilts in 3D toward the cursor. Forwards Motion props (variants etc.)
 // so it still participates in the parent's stagger.
-export function TiltCard({ children, max = 9, style, ...rest }) {
+// A gentle tilt: past ~5° the paragraph text inside becomes hard to read mid-hover.
+export function TiltCard({ children, max = 5, style, ...rest }) {
   const ref = useRef(null);
   const fine = useFinePointer();
   const reduced = useReducedMotion();
