@@ -8,29 +8,29 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
 <style>
   /* Print-first: one A4 page, black on white, one accent. Same fonts as the site. */
-  @page { size: A4; margin: 14mm 15mm; }
+  @page { size: A4; margin: 9mm 12mm; }
   :root { --ink: #111827; --muted: #4b5563; --rule: #d1d5db; --accent: #15803d; }
   * { box-sizing: border-box; }
   html, body { margin: 0; background: #fff; color: var(--ink); }
-  body { font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 10.4pt; line-height: 1.38; }
-  .page { max-width: 186mm; margin: 0 auto; padding: 10mm 0; }
-  h1 { font-family: "JetBrains Mono", monospace; font-size: 24pt; letter-spacing: -0.02em; margin: 0; line-height: 1; }
-  .role { font-family: "JetBrains Mono", monospace; font-size: 9.5pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-top: 5px; }
-  .contact { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 9.4pt; color: var(--muted); }
+  body { font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 9.1pt; line-height: 1.27; }
+  .page { max-width: 186mm; margin: 0 auto; padding: 0; }
+  h1 { font-family: "JetBrains Mono", monospace; font-size: 22pt; letter-spacing: -0.02em; margin: 0; line-height: 1; }
+  .role { font-family: "JetBrains Mono", monospace; font-size: 8.6pt; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 4px; }
+  .contact { margin-top: 5px; display: flex; flex-wrap: wrap; gap: 3px 12px; font-size: 8.8pt; color: var(--muted); }
   .contact a { color: var(--muted); text-decoration: none; }
-  h2 { font-family: "JetBrains Mono", monospace; font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 13px 0 5px; padding-bottom: 3px; border-bottom: 1px solid var(--rule); }
+  h2 { font-family: "JetBrains Mono", monospace; font-size: 8.2pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 7px 0 2px; padding-bottom: 2px; border-bottom: 1px solid var(--rule); }
   p { margin: 0; }
   .summary { color: var(--ink); }
-  .item { margin-top: 6px; }
-  .item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  .item-head strong { font-size: 10.8pt; }
-  .item-head .meta { font-family: "JetBrains Mono", monospace; font-size: 8.4pt; color: var(--muted); white-space: nowrap; }
-  .item .sub { color: var(--muted); font-size: 9.6pt; }
-  ul { margin: 3px 0 0; padding-left: 14px; }
-  li { margin: 1.5px 0; }
-  .tech { font-family: "JetBrains Mono", monospace; font-size: 8.4pt; color: var(--muted); margin-top: 2px; }
-  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; }
-  .skills p { margin: 2px 0; }
+  .item { margin-top: 3px; }
+  .item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .item-head strong { font-size: 10pt; }
+  .item-head .meta { font-family: "JetBrains Mono", monospace; font-size: 7.8pt; color: var(--muted); white-space: nowrap; }
+  .item .sub { color: var(--muted); font-size: 9pt; }
+  ul { margin: 2px 0 0; padding-left: 13px; }
+  li { margin: 1px 0; }
+  .tech { font-family: "JetBrains Mono", monospace; font-size: 7.8pt; color: var(--muted); margin-top: 1px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; }
+  .skills p { margin: 1px 0; }
   .skills b { font-weight: 600; }
   .fill { background: #fef3c7; color: #92400e; padding: 0 3px; border-radius: 3px; }
   @media screen { body { background: #e5e7eb; } .page { background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,.15); padding: 14mm 15mm; margin: 24px auto; } }
@@ -52,12 +52,12 @@
   </header>
 
   <h2>Summary</h2>
-  <p class="summary">Computer Science Engineering student who builds software end-to-end — from idea and architecture to a working, deployed product. Strongest across the full loop: understanding a problem, designing the system, integrating frontend, backend, database and AI models, debugging, shipping and presenting it. Most effective in ambiguous problem spaces. Open to Software, Full-Stack, Backend and AI Engineering internships (2026).</p>
+  <p class="summary">Computer Science Engineering student who builds software end-to-end — from idea and architecture to a working, deployed product. Strongest across the full loop: understanding a problem, designing the system, integrating frontend, backend, database and AI models, debugging, shipping and presenting it. Open to Software, Full-Stack, Backend and AI Engineering internships (2026).</p>
 
   <h2>Projects</h2>
 
   <div class="item">
-    <div class="item-head"><strong>TrustVision — offline integrity assurance for defense computer-vision pipelines</strong><span class="meta">Smart India Hackathon · github.com/ekupekuAI/AISecurity26228</span></div>
+    <div class="item-head"><strong>TrustVision — offline integrity assurance for defense CV pipelines</strong><span class="meta">Smart India Hackathon · github.com/ekupekuAI/AISecurity26228</span></div>
     <ul>
       <li>Air-gapped system that verifies datasets, models and inference outputs — duplicate, backdoor and out-of-distribution detection — with no online dependency.</li>
       <li>Issues a signed, evidence-backed trust verdict and writes every decision to a tamper-proof audit log.</li>
@@ -91,15 +91,15 @@
   </div>
 
   <div class="item">
-    <div class="item-head"><strong>Student Command Center — full-stack study dashboard with a per-user AI assistant</strong><span class="meta">github.com/ekupekuAI/student-command-center</span></div>
+    <div class="item-head"><strong>Student Command Center — study dashboard with a per-user AI assistant</strong><span class="meta">github.com/ekupekuAI/student-command-center</span></div>
     <ul>
       <li>Subjects, tasks, notes and study-session tracking; JWT auth, per-user data isolation and production-hardened rate limiting.</li>
     </ul>
-    <div class="tech">React · FastAPI · PostgreSQL</div>
+    <div class="tech">JavaScript (Vite) · FastAPI · PostgreSQL</div>
   </div>
 
   <div class="item">
-    <div class="item-head"><strong>Health Record System — role-based health-record management prototype</strong><span class="meta">github.com/ekupekuAI/Health-Record-System</span></div>
+    <div class="item-head"><strong>Health Record System — role-based records prototype</strong><span class="meta">github.com/ekupekuAI/Health-Record-System</span></div>
     <ul>
       <li>Patient, doctor and admin roles; appointment booking, medical-records timeline and prescription management.</li>
     </ul>
